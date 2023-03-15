@@ -15,25 +15,27 @@ void dfs(int u, int fa) {
         dfs(v, u);
         G[u][i].first = H[v];
     }
-    H[u] = num[G[u].size() % 1000000];
+    sort(G[u].begin(), G[u].end());
+    H[u] = num[int(G[u].size()) % 1000005];
     for (int i = 0, v; i < G[u].size(); i++) {
+        v = G[u][i].second;
         if (v == fa) continue;
-        H[u] ^= num[H[v] % 1000001];
-        H[u] ^= num[H[v] % 1000003];
-        H[u] ^= num[H[v] % 1000005];
+        // H[u] ^= num[(H[v] + i) % 1000001];
+        // H[u] ^= num[(H[v] + i) % 1000003];
+        H[u] ^= num[(H[v] + i) % 1000005];
     }
 }
 
 bool check(int u, int fa) {
     map<ll, int> mp; mp.clear();
-    for (int i = 0, v, val; i < G[u].size(); i++) {
-        v = G[u][i].second; val = G[u][i].first;
+    for (int i = 0, v; i < G[u].size(); i++) {
+        v = G[u][i].second;
         if (v == fa) continue;
-        auto it = mp.find(val);
+        auto it = mp.find(H[v]);
         if (it == mp.end()) {
-            mp.insert({val, v});
+            mp.insert({H[v], v});
         }
-        else mp.erase(val);
+        else mp.erase(H[v]);
     }
     int tmp = mp.size();
     if (!tmp) return 1;
@@ -50,7 +52,6 @@ void solve() {
         G[v].push_back({0, u});
     }
     dfs(1, 1);
-    puts("qwq");
     if (check(1, 1)) cout << "YES\n";
     else cout << "NO\n";
 }
@@ -59,7 +60,7 @@ int main() {
     ios::sync_with_stdio(0); cin.tie(0);
     srand(unsigned(time(0)));
     for (int i = 0; i < 1000005; i++) {
-        num[i] = rand() | rand() << 15 | rand() << 30 | rand() << 45ll;
+        num[i] = 1ll * rand() | 1ll * rand() << 15 | 1ll * rand() << 30 | 1ll * rand() << 45;
     }
     int T; cin >> T;
     for (; T; T--) solve();
