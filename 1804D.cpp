@@ -13,7 +13,7 @@ void solve() {
   vector<vector<bool> > vec; vec.clear();
   vec.resize(n + 1);
   for (int i = 1; i <= n; i++) {
-    vec[i].resize(n + 1); 
+    vec[i].resize(m + 1); 
   }
   ll summn = 0, summx = 0;
   for (int i = 1; i <= n; i++) {
