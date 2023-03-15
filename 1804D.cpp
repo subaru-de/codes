@@ -33,11 +33,11 @@ void solve() {
       else pre = 0;
     }
     summn -= min(tmp, m >> 2);
-    pre = 0; tmp = 0;
+    pre = 0; tmp = 0; bool ok = 0;
     for (int j = 1; j <= m; j++) {
-      if (pre || !vec[i][j]) tmp++, pre = 0;
-      else if (!vec[i][j]) pre = 1;
-      else pre = 0;
+      if (ok && (pre || !vec[i][j])) ok = 0, tmp++, pre = 0;
+      else if (!vec[i][j]) pre = 1, ok = 1;
+      else pre = 0, ok = 1;
     }
     summx -= min(tmp, m >> 2);
   }
