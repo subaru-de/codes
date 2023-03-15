@@ -33,15 +33,14 @@ void solve() {
       else pre = 0;
     }
     summn -= min(tmp, m >> 2);
-    pre = 0; tmp = m >> 2;
+    pre = 0; tmp = 0;
     for (int j = 1; j <= m; j++) {
-      if (pre && !vec[i][j]) tmp++, pre = 0;
+      if (pre || !vec[i][j]) tmp++, pre = 0;
       else if (!vec[i][j]) pre = 1;
       else pre = 0;
     }
     summx -= min(tmp, m >> 2);
   }
-  cout << summx << '\n';
   summx = 1ll * n * ((m >> 1) + (m >> 2)) - summx;
   cout << summn << ' ' << summx << '\n';
 }
