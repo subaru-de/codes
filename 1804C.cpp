@@ -7,7 +7,7 @@ void solve() {
     int n, x, p; cin >> n >> x >> p;
     ll de = (n - x) % n;
     int tmp = 0;
-    for (int i = 1; i <= p; i++) {
+    for (int i = 1; i <= min(n << 1 | 1, p); i++) {
         tmp = (tmp + i) % n;
         if (tmp == de) {
             cout << "Yes\n";
