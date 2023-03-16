@@ -23,13 +23,11 @@ void add_edge(int u, int v) {
 
 pair<ull, ll> modify(int pos) {
     ull h = H[0];
-    // cout << num[pos] << ' ' << num[pos] * hpow[pos] << '\n';
     h = h - num[pos] * hpow[pos];
     h = h + (num[pos] + 1) * hpow[pos];
     ll f = F[0];
     f = (f - num[pos] * fpow[pos] % mod + mod) % mod;
     f = (f + (num[pos] + 1) * fpow[pos]) % mod;
-    // cout << h << ' ' << f << ' ' << pos << '\n';
     return {h, f};
 }
 
@@ -78,13 +76,11 @@ void solve() {
     for (int i = n - 1; ~i; i--) {
         H[i] = H[i + 1] * base + num[i];
         F[i] = (F[i + 1] * base + num[i]) % mod;
-        // cout << H[i] << ' ' << F[i] << " qwq\n";
     }
     st.clear();
     for (int i = 0; i < n; i++) {
         st.insert(modify(i));
     }
-    // for (auto &it : st) cout << it.first << ' ' << it.second << '\n';
     for (int i = 1, u, v; i < n; i++) {
         cin >> u >> v;
         add_edge(u, v);
