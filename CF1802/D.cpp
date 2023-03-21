@@ -22,8 +22,10 @@ void solve() {
     int ans = 0x3f3f3f3f3f3f3f3f;
     for (int i = 1; i <= n; i++) {
         int pos = lower_bound(b + 1, b + n + 1, a[i]) - b;
-        if (b[pos].p != a[i].p) ans = min(ans, abs(a[i].w - b[pos].w));
-        else if (pos + 1 <= n) ans = min(ans, abs(a[i].w - b[pos + 1].w));
+        if (pos <= n) {
+            if (b[pos].p != a[i].p) ans = min(ans, abs(a[i].w - b[pos].w));
+            else if (pos + 1 <= n) ans = min(ans, abs(a[i].w - b[pos + 1].w));
+        }
         pos--;
         if (!pos) continue;
         if (b[pos].p != a[i].p) ans = min(ans, abs(a[i].w - b[pos].w));
