@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#define int long long
 using namespace std;
 
 const int maxn = 5e5 + 5;
@@ -18,7 +19,7 @@ void solve() {
     }
     sort(a + 1, a + n + 1);
     sort(b + 1, b + n + 1);
-    int ans = 0x3f3f3f3f;
+    int ans = 0x3f3f3f3f3f3f3f3f;
     for (int i = 1; i <= n; i++) {
         int pos = lower_bound(b + 1, b + n + 1, a[i]) - b;
         if (b[pos].p != a[i].p) ans = min(ans, abs(a[i].w - b[pos].w));
@@ -31,7 +32,7 @@ void solve() {
     cout << ans << '\n';
 }
 
-int main() {
+signed main() {
     ios::sync_with_stdio(0); cin.tie(0);
     int T; cin >> T;
     for (; T; T--) solve();
