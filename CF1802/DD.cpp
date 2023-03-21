@@ -10,6 +10,7 @@ struct Node {
         return w > rhs.w;
     }
 } a[maxn], b[maxn];
+set<int> st1, st2;
 
 void solve() {
     cin >> n;
@@ -25,9 +26,12 @@ void solve() {
             ans = min(ans, abs(a[i].w - b[j].w));
             if (a[i].w == b[j].w) break;
         }
-        if (a[i].w > b[j].w) i++;
-        else if (a[i].w < b[j].w) j++;
-        else if (a[i].p == b[j].p) i++;
+        if (a[i].w > b[j].w && st2.find(a[i].p) == st2.end()) i++;
+        else if (a[i].w < b[j].w && st1.find(a[i].p) == st1.end()) j++;
+        else if (a[i].p == b[j].p) {
+            if (a[i + 1].w > a[j + 1].w) i++;
+            else j++;
+        }
     }
     cout << ans << '\n';
 }
