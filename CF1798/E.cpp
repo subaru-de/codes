@@ -16,7 +16,7 @@ void solve() {
         else if (i + a[i] < n && f[i + a[i] + 1]) f[i] = f[i + a[i] + 1] + 1;
         g[i] = mxf[i + 1] + 1;
         if (i + a[i] < n) g[i] = max(g[i], g[i + a[i] + 1] + 1);
-        mxf[i] = max(mxf[i - 1], f[i]);
+        mxf[i] = max(mxf[i + 1], f[i]);
     }
     for (int i = 1; i < n; i++) {
         if (f[i + 1] == a[i]) cout << 0 << ' ';
