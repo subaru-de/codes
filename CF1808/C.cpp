@@ -34,7 +34,10 @@ void solve() {
             ll tmp = calc(r2, 0);
             top_ = num1;
             tmp -= calc(r1, 0);
-            if (tmp) flag = 1;
+            if (tmp) {
+                flag = 1;
+                cout << tmp << '\n';
+            }
         }
         if (flag) {
             cout << i << '\n';
